@@ -24,12 +24,15 @@ ui <- fluidPage( theme = shinytheme("slate"),
    # Application title
    titlePanel("Harvard Women's Volleyball 2018"),
    
-   # Sidebar with a slider input for number of bins 
+   # Sidebar with a select input for match and checbox group for team. 
    sidebarLayout(
       sidebarPanel( 
          selectInput("data",
                      "Choose Match:",
-                     choices = c("CU vs. Penn", "Nova KBM Branik vs. Braslovče"))
+                     choices = c("CU vs. Penn", "Nova KBM Branik vs. Braslovče")), 
+         checkboxGroupInput("team", 
+                     "Choose a team",
+                     "")
       ),
       
       # Show a plot of the generated distribution
@@ -39,7 +42,8 @@ ui <- fluidPage( theme = shinytheme("slate"),
                               htmlOutput("matchsummary")), 
                      tabPanel(title = "Stastistics"),
                      tabPanel(title = "Serving", 
-                              plotOutput("serve_plot")), 
+                              plotOutput("serve_plot"), 
+                              plotOutput("serve_map")), 
                      tabPanel(title = "Data"),
                      tabPanel(title = "References", 
                               "This Shiny App was built by Maclaine Fields using DataVolley files from the Harvard Women's Volleyball 2018 Season. All data was obtained with permission of coaching staff.",
@@ -54,22 +58,23 @@ ui <- fluidPage( theme = shinytheme("slate"),
 )
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
-   
+server <- function(input, output, session) {
+
   datasetInput <- reactive({
     switch(input$data, 
            "CU vs. Penn" = CU_PENN_dataset, 
            "Nova KBM Branik vs. Braslovče" = dataset)
   })
+  #Got code from "https://stackoverflow.com/questions/21465411/r-shiny-passing-reactive-to-selectinput-choices"
+  observe({
+    updateCheckboxGroupInput(session, "team", 
+                      choices = teams(datasetInput()))
+  })
   
 ## Should I create serving data here? 
   serves <- reactive ({
     plays(datasetInput()) %>% 
-      filter(skill == "Serve") %>% 
-      select(point_id, code, team, player_number, skill_type, evaluation_code, 
-             evaluation, start_zone, end_zone, special_code, home_team_score, 
-             visiting_team_score, home_setter_position, visiting_setter_position, 
-             point_won_by, serving_team)
+      filter(skill == "Serve") 
   })
   
    output$serve_plot <- renderPlot({
@@ -79,8 +84,19 @@ server <- function(input, output) {
    })
    
    output$serve_map <- renderPlot({
-     serves() %>% 
-       
+     
+     if (input$data == "CU vs. Penn") {
+       serves() %>% 
+         filter(team == input$team)
+         #got this code from raymond ben's github 
+         ggplot(aes(start_coordinate_x, start_coordinate_y, xend = end_coordinate_x, yend = end_coordinate_y, color = evaluation)) + 
+         geom_point() + ggcourt() +geom_segment()
+     }
+     
+     else {
+       "This doesn't apply"
+     }
+
    })
    
    output$matchsummary <- renderText({

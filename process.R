@@ -22,6 +22,7 @@ example_serves %>%
 CU_PENN <- read_dv("CU-PENN.dvw", insert_technical_timeouts = FALSE, skill_evaluation_decode = skill_evaluation_decoder())
 write_rds(CU_PENN, path = "mfields_finalproject/CU_PENN.rds")
 
+plays(CU_PENN) %>%  filter(skill == "Serve") %>% View()
 
 
 ggplot(aes(start_coordinate_x, start_coordinate_y,

@@ -26,13 +26,22 @@ ui <- fluidPage( theme = shinytheme("slate"),
    
    # Sidebar with a select input for match and checbox group for team. 
    sidebarLayout(
-      sidebarPanel( 
+      sidebarPanel( width = 3, 
          selectInput("data",
                      "Choose Match:",
                      choices = c("CU vs. Penn", "Nova KBM Branik vs. Braslovče")), 
          checkboxGroupInput("team", 
                      "Choose a team",
-                     "")
+                     ""),
+         selectizeInput("serve_evaluation", 
+                            "Serve Result", 
+                            choices = c("Negative, opponent free attack", 
+                                        "Positive, opponent some attack", 
+                                        "OK, no first tempo possible", 
+                                        "Error", 
+                                        "Ace", 
+                                        "Positive, no attack"), 
+                            selected = "Error") #How to not get error when nothing is chosen for evaluation?
       ),
       
       # Show a plot of the generated distribution
@@ -42,8 +51,14 @@ ui <- fluidPage( theme = shinytheme("slate"),
                               htmlOutput("matchsummary")), 
                      tabPanel(title = "Stastistics"),
                      tabPanel(title = "Serving", 
-                              plotOutput("serve_plot"), 
-                              plotOutput("serve_map")), 
+                              fluidRow(
+                                column(6, 
+                                       wellPanel(
+                                         plotOutput("serve_plot", width = "100%"))
+                                       ),
+                                column(6, 
+                                       wellPanel(plotOutput("serve_map"))
+                                       ))),
                      tabPanel(title = "Data"),
                      tabPanel(title = "References", 
                               "This Shiny App was built by Maclaine Fields using DataVolley files from the Harvard Women's Volleyball 2018 Season. All data was obtained with permission of coaching staff.",
@@ -57,6 +72,7 @@ ui <- fluidPage( theme = shinytheme("slate"),
    )
 )
 
+
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
 
@@ -65,11 +81,14 @@ server <- function(input, output, session) {
            "CU vs. Penn" = CU_PENN_dataset, 
            "Nova KBM Branik vs. Braslovče" = dataset)
   })
+  
   #Got code from "https://stackoverflow.com/questions/21465411/r-shiny-passing-reactive-to-selectinput-choices"
   observe({
     updateCheckboxGroupInput(session, "team", 
-                      choices = teams(datasetInput()))
+                      choices = teams(datasetInput()), 
+                      selected = teams(datasetInput()))
   })
+  
   
 ## Should I create serving data here? 
   serves <- reactive ({
@@ -80,25 +99,26 @@ server <- function(input, output, session) {
    output$serve_plot <- renderPlot({
       # generate bins based on input$bins from ui.R
      serves() %>% 
-     ggplot(aes(x = evaluation, fill = team)) + geom_bar(position = "dodge") + coord_flip()
+     ggplot(aes(x = evaluation, fill = team)) + geom_bar(position = "dodge") + theme(axis.text.x=element_text(angle=65,hjust=1)) +
+       theme(legend.position="bottom", legend.direction = "vertical")
    })
    
    output$serve_map <- renderPlot({
      
      if (input$data == "CU vs. Penn") {
        serves() %>% 
-         filter(team == input$team)
-         #got this code from raymond ben's github 
+         filter(serving_team == input$team) %>% 
+         filter(evaluation == input$serve_evaluation) %>% 
+         #got this code from raymond ben's github. Some of the coordinates are incorrect, how would I fix this? 
          ggplot(aes(start_coordinate_x, start_coordinate_y, xend = end_coordinate_x, yend = end_coordinate_y, color = evaluation)) + 
-         geom_point() + ggcourt() +geom_segment()
+         geom_point() + ggcourt() +geom_segment() +  theme(legend.position="bottom", legend.direction = "vertical")
      }
      
      else {
-       "This doesn't apply"
      }
 
    })
-   
+   # Possibly include leaflet that shows where the game was played. 
    output$matchsummary <- renderText({
      paste(h1("Match Summary"), br(), 
      "The duration of this game was", strong(summary(datasetInput())[[5]]), "minutes.",

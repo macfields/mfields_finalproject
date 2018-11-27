@@ -22,7 +22,12 @@ example_serves %>%
 CU_PENN <- read_dv("CU-PENN.dvw", insert_technical_timeouts = FALSE, skill_evaluation_decode = skill_evaluation_decoder())
 write_rds(CU_PENN, path = "mfields_finalproject/CU_PENN.rds")
 
-plays(CU_PENN) %>%  filter(skill == "Serve") %>% View()
+#trying to figure out what serves have coordinates that are negative because 
+# they look strange on the serving map in the shiny app. 
+plays(CU_PENN) %>%  filter(skill == "Serve") %>% filter(evaluation == "Error") %>% 
+  select(point_id, serving_team, home_team_score, visiting_team_score, player_name, skill, start_zone, end_zone, evaluation, code, start_coordinate, end_coordinate, start_coordinate_x, start_coordinate_y, end_coordinate_x, end_coordinate_y) %>% 
+  View()
+
 
 
 ggplot(aes(start_coordinate_x, start_coordinate_y,

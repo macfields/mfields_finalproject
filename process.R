@@ -48,4 +48,9 @@ harvard_bc_plays <- plays(harvard_bc) %>%
 
 write_rds(harvard_bc_plays, path = "mfields_finalproject/harvard_bc_plays.rds")
 
+plays(harvard_bc) %>% filter(team == "Harvard University") %>% 
+  filter(skill == "Attack") %>% 
+  group_by(phase) %>% 
+  filter(evaluation_code == "=") %>% 
+  count() %>% View()
 

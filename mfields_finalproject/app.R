@@ -12,11 +12,14 @@ library(tidyverse)
 library(datavolley)
 library(shinythemes)
 library(tools)
+library(DT)
 
 dataset <- read_rds("example_file.rds")
 summary_dataset <- summary(dataset)
 
 CU_PENN_dataset <- read_rds("CU_PENN.rds")
+
+harvard_bc_plays <- read_rds("harvard_bc_plays.rds")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage( theme = shinytheme("slate"),
@@ -48,7 +51,8 @@ ui <- fluidPage( theme = shinytheme("slate"),
       mainPanel(
         tabsetPanel( type = "tabs", 
                      tabPanel(title = "Match Information", value = 1, 
-                              htmlOutput("matchsummary")), 
+                              htmlOutput("matchsummary"), 
+                              tableOutput("attacksummary")), 
                      tabPanel(title = "Statistics"),
                      tabPanel(title = "Serving", 
                               fluidRow(
@@ -127,6 +131,25 @@ server <- function(input, output, session) {
      strong(summary(datasetInput())[[3]][[1]][[2]]), ".", "The Winner of the game was...")
      #how to get this period to space without a space? Deal with non-league games. Insert game winner. 
    })
+   
+   output$attacksummary <- renderTable(
+     harvard_bc_plays %>% 
+       filter(skill == "Attack" & team == "Harvard University") %>% 
+       #Use a group_by and summary command to calculate the total number of attacks during transition and off serve recieve. 
+       # Find the number of kills as well as the attack efficiency. Attack efficiency is the number of kills minus the number of 
+       #errors or blocked balls divided by total attempts. 
+       group_by(phase) %>% 
+       summarize(total = n(), 
+                 kills = sum(evaluation_code == "#" ), 
+                 errors = sum(evaluation_code == "="), 
+                 efficiency = (sum(evaluation_code == "#") - sum(evaluation_code %in% c("=", "/"))), 
+                 rate = efficiency/total
+            
+                          
+                               
+       ))
+   
+     
 }
 
 # Run the application 

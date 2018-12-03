@@ -49,7 +49,7 @@ ui <- fluidPage( theme = shinytheme("slate"),
         tabsetPanel( type = "tabs", 
                      tabPanel(title = "Match Information", value = 1, 
                               htmlOutput("matchsummary")), 
-                     tabPanel(title = "Stastistics"),
+                     tabPanel(title = "Statistics"),
                      tabPanel(title = "Serving", 
                               fluidRow(
                                 column(6, 

@@ -33,3 +33,19 @@ plays(CU_PENN) %>%  filter(skill == "Serve") %>% filter(evaluation == "Error") %
 ggplot(aes(start_coordinate_x, start_coordinate_y,
                     xend=end_coordinate_x, yend=end_coordinate_y))+
   geom_segment() + geom_point() + ggcourt()
+
+download.file(url = "https://raw.githubusercontent.com/jackconnolly21/heatmap/master/main/app/data/ivy2017/%262017-09-14%2023501%20HARV-BC(VM).dvw", 
+              destfile = "harvard_bc.dvw", 
+              quiet = TRUE, 
+              mode = "wb")
+
+harvard_bc <- read_dv("harvard_bc.dvw", insert_technical_timeouts = FALSE)
+harvard_bc_plays <- plays(harvard_bc) %>% 
+  # Here, I'm removing the system codes. These are codes that do not represent plays, but contain condensed metadata like 
+  # rotation, setter number, and substitutions for each play. I do not need these to calculate the attacking statistics. System
+  # codes are not coded for player number, so I can filter out observations where player umber is NA. 
+  filter(!is.na(player_number))
+
+write_rds(harvard_bc_plays, path = "mfields_finalproject/harvard_bc_plays.rds")
+
+

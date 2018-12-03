@@ -46,7 +46,7 @@ harvard_bc_plays <- plays(harvard_bc) %>%
   # codes are not coded for player number, so I can filter out observations where player umber is NA. 
   filter(!is.na(player_number))
 
-write_rds(harvard_bc_plays, path = "mfields_finalproject/harvard_bc_plays.rds")
+write_rds(harvard_bc, path = "mfields_finalproject/harvard_bc.rds")
 
 plays(harvard_bc) %>% filter(team == "Harvard University") %>% 
   filter(skill == "Attack") %>% 

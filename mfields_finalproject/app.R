@@ -19,6 +19,8 @@ summary_dataset <- summary(dataset)
 
 CU_PENN_dataset <- read_rds("CU_PENN.rds")
 
+harvard_bc <- read_rds("harvard_bc.rds")
+
 harvard_bc_plays <- read_rds("harvard_bc_plays.rds")
 
 # Define UI for application that draws a histogram
@@ -32,7 +34,7 @@ ui <- fluidPage( theme = shinytheme("slate"),
       sidebarPanel( width = 3, 
          selectInput("data",
                      "Choose Match:",
-                     choices = c("CU vs. Penn", "Nova KBM Branik vs. Braslovče")), 
+                     choices = c("CU vs. Penn", "Nova KBM Branik vs. Braslovče", "Harvard vs. Boston College")), 
          checkboxGroupInput("team", 
                      "Choose a team",
                      ""),
@@ -83,7 +85,8 @@ server <- function(input, output, session) {
   datasetInput <- reactive({
     switch(input$data, 
            "CU vs. Penn" = CU_PENN_dataset, 
-           "Nova KBM Branik vs. Braslovče" = dataset)
+           "Nova KBM Branik vs. Braslovče" = dataset,
+           "Harvard vs. Boston College" = harvard_bc )
   })
   
   #Got code from "https://stackoverflow.com/questions/21465411/r-shiny-passing-reactive-to-selectinput-choices"
@@ -133,8 +136,9 @@ server <- function(input, output, session) {
    })
    
    output$attacksummary <- renderTable(
-     harvard_bc_plays %>% 
-       filter(skill == "Attack" & team == "Harvard University") %>% 
+     plays(datasetInput()) %>% 
+       filter(skill == "Attack") %>% 
+       filter(team %in% input$team) %>% 
        #Use a group_by and summary command to calculate the total number of attacks during transition and off serve recieve. 
        # Find the number of kills as well as the attack efficiency. Attack efficiency is the number of kills minus the number of 
        #errors or blocked balls divided by total attempts. 

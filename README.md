@@ -6,6 +6,6 @@ I analyzed setting, serving, receiving, digging, and attacking results and creat
 
 There is a great app from which I got the inspiration for the layout of this project. This app can be found at https://apps.untan.gl/dvrr/.  
 
-For more information on the DataVolley Coding System, see file:///Users/maclainefields/Downloads/DVWin4_HandBook_Eng%20(2).PDF
+For more information on the DataVolley Coding System, see the DataVolley Handbook at http://users.jyu.fi/~tukamikk/tilastot/tiedostoja/DVWin2007_HandBook.PDF
 
 For an example of how statisticians are using DataVolley files for volleyball analytics, see http://www.sloansportsconference.com/wp-content/uploads/2017/02/1481.pdf

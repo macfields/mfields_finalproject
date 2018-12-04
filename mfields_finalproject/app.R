@@ -320,17 +320,17 @@ server <- function(input, output, session) {
                           "Eastern Michigan University", "Fairfield", "University of Michigan", "Michigan State University", 
                           "Boston College", "Northeastern University", "University of Massachussets Lowell")) { 
      paste(
-     "The duration of this game was", strong(summary(datasetInput())[[5]]), "minutes.",
+     "The duration of this game was", summary(datasetInput())[[5]], "minutes.",
      "The game was played in the Ivy League", 
-     "on", date, "between", strong(summary(datasetInput())[[3]][[1]][[1]]), "and",
-     strong(summary(datasetInput())[[3]][[1]][[2]]), ".", "The score was", score,",", "and", winner , "won.")
+     "on", date, "between", summary(datasetInput())[[3]][[1]][[1]], "and",
+     summary(datasetInput())[[3]][[1]][[2]], ".", "The score was", score,",", "and", winner , "won.")
      }
      
      else {
        paste(
-         "The duration of this game was", strong(summary(datasetInput())[[5]]), "minutes.", "This was a non-conference match played", 
-         "on", date, "between", strong(summary(datasetInput())[[3]][[1]][[1]]), "and",
-         strong(summary(datasetInput())[[3]][[1]][[2]]), ".", "The score was", score,",", "and",winner, "won.")
+         "The duration of this game was", summary(datasetInput())[[5]], "minutes.", "This was a non-conference match played", 
+         "on", date, "between", summary(datasetInput())[[3]][[1]][[1]], "and",
+         summary(datasetInput())[[3]][[1]][[2]], ".", "The score was", score,",", "and",winner, "won.")
      }
    })
    

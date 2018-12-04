@@ -44,6 +44,7 @@ YALE2_shiny <- read_rds("shiny_data/ YALE2 .rds")
 
 
 # Define UI for application that draws a histogram
+
 ui <- dashboardPage(skin = "red",
   dashboardHeader(title = "Harvard Volleyball"), 
   dashboardSidebar(
@@ -88,9 +89,28 @@ ui <- dashboardPage(skin = "red",
                   HTML('<center><img src="harvardathleticslogo.jpg" width="400"></center>')
                   
                      ), 
-              box(height = 370, 
+              #Volleyball metrics can be a little confusing for those are not familiar, so I wanted to be sure that I explained the metrics
+              #that are used on my summary analysis page. 
+              box(height = 390, 
                   width = NULL, 
-                  "about these metrics")
+                  title = "Explanations of Metrics", 
+                  solidHeader = TRUE,
+                  strong("Attacking"), 
+                  p("This table looks at overall attacking metrics for the chosen match, filtered by whether the team is attacking
+                    of a serve in serve receive or a dig in transition. Total Attempts are the total number of attacks in that phase. Kills
+                    are the total number of attacks that directly resulted in a point, while Errors are the number of hitting errors in that phase.
+                    The Efficiency Rate is the Attack Efficiency Rate, a common volleyball metric. The Attack Efficiency Rate is equal to 
+                    (# of Kills - #Errors)/Total Attempts."),
+                  br(), 
+                  strong("Scoring by Rotation"), 
+                  p("This table looks at the Sideout Percentage for each rotation for each team. Sideouts are when a team wins a point off the other teams serve. The sideout percentage is
+                    the percentage of sideouts in each rotation."),
+                  br(), 
+                  strong("Receive"), 
+                  p("This table looks at serve receive results for each type of serve. It shows the number of each quality of pass
+                    dependent on the serve type.")
+                  
+                  )
               )
               )
             ), 

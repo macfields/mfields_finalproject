@@ -6,8 +6,6 @@ library(fs)
 library(lubridate)
 
 
-#Obtained DataVolley files from Jared Goldberg, Assistant Harvard Women's Volleyball Coach. 
-unzip("redatavolleyfiles.zip", exdir = "2018dvwfiles")
 
 
 #I know there must be an easier name to read in these datavolley files. 

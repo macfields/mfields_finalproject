@@ -566,7 +566,7 @@ server <- function(input, output, session) {
        filter(skill == "Reception") %>% 
        group_by(visiting_setter_position) %>% 
        summarize(
-         sideouts = sum(point_won_by == visting_team),
+         sideouts = sum(point_won_by == visiting_team),
          total = n(),
          sideoutpercentage = sideouts/total) %>% 
        rename(

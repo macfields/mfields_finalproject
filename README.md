@@ -1,9 +1,7 @@
 # Harvard Volleyball 2018 Analytics
 
+DataVolley is a statistics and analysis software used by most collegiate volleyball teams. DataVolley files from each match can be downloaded in the .dvw format. There is a package in R, "datavolley", that allows for the analysis of these files in R. It was created by Ben Raymond, and the github for this package can be found at https://github.com/raymondben/datavolley. I analyzed 21 datavolley files from the Harvard Women's Volleyball 2018 Season. 
 
-I analyzed attacking, receiving, and digging efficiencies from the Harvard Women’s Volleyball Team’s 14 Ivy League matches this season. 
+I analyzed setting, serving, receiving, digging, and attacking results and created plots that show the setting tendencies and serving trajectories of Harvard Volleyball and its opponents. As expected, Harvard and its opponents are much more likely to set their middles on a perfect or good pass than a poor pass. Second, on poor passes, Harvard sets a vast majority of the balls to the outside hitter, but if the pass if ok, the distribution is split between the outside and rightside. Lastly, serves that resulted in an ace did not tend to go towards the middle of the court, but instead deep or towards the sidelines. 
 
-For both receiving and digging, I created density plots that show the ideal location of a pass based on the resulting hitting percentage for all sets that occur at a specific location. 
-
-Heatmaps also show hitting percentages for each start zone. These plots can be filtered by factors such as the attack combination ran and the number of blockers up. 
-
+There is a great app from which I got the inspiration for the layout of this project. This app can be found at https://apps.untan.gl/dvrr/.  

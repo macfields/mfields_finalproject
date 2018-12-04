@@ -91,7 +91,7 @@ ui <- dashboardPage(skin = "red",
                      ), 
               #Volleyball metrics can be a little confusing for those are not familiar, so I wanted to be sure that I explained the metrics
               #that are used on my summary analysis page. 
-              box(height = 390, 
+              box(height = 430, 
                   width = NULL, 
                   title = "Explanations of Metrics", 
                   solidHeader = TRUE,

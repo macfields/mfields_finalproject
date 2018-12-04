@@ -9,8 +9,6 @@ library(lubridate)
 #Obtained DataVolley files from Jared Goldberg, Assistant Harvard Women's Volleyball Coach. 
 unzip("redatavolleyfiles.zip", exdir = "2018dvwfiles")
 
-#Delete zipped file now that I no longer need it. 
-file.remove("redatavolleyfiles.zip")
 
 #I know there must be an easier name to read in these datavolley files. 
 #However, given that there are only 21, I can do it by hand individually. Since the Harvard Women's 
@@ -52,7 +50,7 @@ BROWN2 <- read_dv("2018dvwfiles/&2018-11-03 66884 HARV-BROWN(VM).dvw", insert_te
 # https://stackoverflow.com/questions/37646382/how-do-deparse-substitute-work-to-allow-access-to-an-objects-name. 
 
 write_dv_rds <- function(dv_object) {
-  x <- paste("mfields_finalproject/", deparse(substitute(dv_object)),".rds")
+  x <- paste("mfields_finalproject/shiny_data/", deparse(substitute(dv_object)),".rds")
   write_rds(dv_object, path = x)
 }
 

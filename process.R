@@ -9,6 +9,9 @@ library(lubridate)
 #Obtained DataVolley files from Jared Goldberg, Assistant Harvard Women's Volleyball Coach. 
 unzip("redatavolleyfiles.zip", exdir = "2018dvwfiles")
 
+#Delete zipped file now that I no longer need it. 
+file.remove("redatavolleyfiles.zip")
+
 #I know there must be an easier name to read in these datavolley files. 
 #However, given that there are only 21, I can do it by hand individually. Since the Harvard Women's 
 #Volleyball team plays all Ivy League opponents twice, I designate Ivy League matches with a 1 or 2, 
@@ -36,6 +39,8 @@ COL2 <- read_dv("2018dvwfiles/&2018-10-26 79208 HARV-COL(VM).dvw", insert_techni
 CORN2 <- read_dv("2018dvwfiles/&2018-10-27 45088 HARV-CORN(VM).dvw", insert_technical_timeouts = FALSE)
 YALE2 <- read_dv("2018dvwfiles/&2018-11-02 66883 HARV-YALE(VM).dvw", insert_technical_timeouts = FALSE)
 BROWN2 <- read_dv("2018dvwfiles/&2018-11-03 66884 HARV-BROWN(VM).dvw", insert_technical_timeouts = FALSE)
+
+
 
 #I want to use the datavolley objects in a pretty raw form in the shiny app because the raw form contains important metadata. 
 # One change, however, that I need to make is that the dates are not formatted the same in all of the datavolley files. 

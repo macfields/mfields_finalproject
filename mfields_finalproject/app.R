@@ -84,7 +84,7 @@ ui <- dashboardPage(skin = "red",
                   width = NULL,
                        h2("Match Summary"), 
                   br(), 
-                  h3(htmlOutput("matchsummary")), 
+                  h5(htmlOutput("matchsummary")), 
                   HTML('<center><img src="harvardathleticslogo.jpg" width="400"></center>')
                   
                      ), 

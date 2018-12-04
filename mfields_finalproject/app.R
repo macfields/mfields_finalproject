@@ -472,7 +472,10 @@ server <- function(input, output, session) {
     attack_rate <- plays(datasetInput()) %>% 
       
       ## I use the start_zone for attacks as an indicator of the position to which the setter set. I do this because after examining several datasets, the
-      ## start_zone of attacks is more accurate than the end_zones of the set. I compared the play-by-play analysis in the datasets with video I have from each game.  
+      ## start_zone of attacks is more accurate than the end_zones of the set. T attack start_zone is consistent with the attack combination code and attack description, while the set end zone is not. I'm not sure why. 
+      # For instance, when the outside hitter hits in zone 4, the hit start_zone is 4, but the set end zone is not 4. therefore I think that the attack start_zone variable
+      # gives a more accurate description of set locations. I also compared the play-by-play analysis in the datasets with video I have from each game.
+      
       
       # I need to know the quality of the pass. Since I'm looking at the start_zone of attacks, I only looking at observations where the skill is attack. However, 
       # since I need to know the quality of the pass, I also need to know the evaluation_code and evaluation for the touch that came two touches before the attack. One 

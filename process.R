@@ -87,4 +87,8 @@ brown_serves <- brown_plays %>%
   filter(skill == "Serve") %>% 
   select(point_id, code, team, player_number, skill_type, evaluation_code, evaluation, start_zone, end_zone, special_code, home_team_score, visiting_team_score, home_setter_position, visiting_setter_position, point_won_by, serving_team) 
 
-
+#  A little bit about the layout of this project: 
+#The zip file with all the datavolleyfiles is in the main project directory, mfields_finalproject. 
+# The datavolley files individually are in thie 2018dvwfiles folder. The shiny app is in the mfields_finalproject folder within mfields_finalproject. 
+# Within the shiny app, the .rds files that are used in the app are all in the shiny_data folder. 
+# the www folder contains the Harvard Athletics Image. 

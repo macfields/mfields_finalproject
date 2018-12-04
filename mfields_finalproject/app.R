@@ -136,14 +136,14 @@ ui <- dashboardPage(skin = "red",
               )
             ),
             fluidRow(
-              jqui_resizable(plotOutput("serve_map")))
+              box(width = 12,
+              jqui_resizable(plotOutput("serve_map"))))
             ),
     tabItem(tabName = "setting_location", 
             h2("Setting Content"),
             fluidRow(
               box(title = "Filters", 
                   solidHeader = TRUE, 
-                  background = "red",
                   width = 12, 
                   selectInput("pass_result", "Pass Result", 
                               #have to have choices be codes because they have to apply to both reception and digging. Evaluation descriptions are not the same for the two skills 
@@ -151,10 +151,17 @@ ui <- dashboardPage(skin = "red",
                                           "-", "+", "/"), 
                               selected = "#"), 
                   selectizeInput("phase", "Serve Receive/Transition",
-                                 choices = c("Transition", "Reception")))), 
+                                 choices = c("Transition", "Reception")))),
+            fluidRow(
+              box(title = "About This Chart", 
+                  width = 12, 
+                  solidHeader = TRUE,
+                  p("This chart shows the percentage of sets going to a specific zone for each team. This is a model of setting decisions, and can be filtered by the 
+                    quality of the pass. For instance, if #(Perfect Pass) is chosen, the chart shows where the setter is likely to set off a perfect pass."))
+            ),
             fluidRow(
               box(title = "Setting Decisions", 
-                  plotOutput("setting_location"), 
+                  jqui_resizable(plotOutput("setting_location")), 
                   solidHeader = TRUE, 
                   width = 12))
             

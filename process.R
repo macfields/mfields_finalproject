@@ -215,3 +215,6 @@ plays_brown %>%
 summary(BROWN1)
 
 home_team(BROWN1)
+
+plays(BROWN1) %>% filter(skill == "Reception") %>% filter(evaluation_code == "-")  %>%  View()
+

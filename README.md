@@ -1,6 +1,5 @@
-# mfields_finalproject
+# Harvard Volleyball 2018 Analytics
 
-This is the repo for the final project. 
 
 I analyzed attacking, receiving, and digging efficiencies from the Harvard Women’s Volleyball Team’s 14 Ivy League matches this season. 
 

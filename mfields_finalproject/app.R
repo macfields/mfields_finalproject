@@ -117,7 +117,7 @@ ui <- dashboardPage(skin = "red",
     tabItem(tabName = "serving",
             h2("Serving Tab Content"), 
             fluidRow(
-              box(
+              box(width = 12,
                 selectizeInput("serve_evaluation", "Serve Result", 
                                choices = c("Negative, opponent free attack", 
                                            "Positive, opponent some attack", 
@@ -126,6 +126,15 @@ ui <- dashboardPage(skin = "red",
                                            "Ace", 
                                            "Positive, no attack"), 
                                selected = "Error"))),
+            fluidRow(
+              box(width = 12,
+                  title = "About This Chart", 
+                  solidHeader = TRUE, 
+                p("This graph shows the starting and ending location of serves for each team in a chosen match. 
+                The starting and ending location of serves are given by coordinates in the volleymetrics files for each game. 
+                  Serving locations trajectories can be filtered by serve result. The dot signifies the starting end of the trajectory.")
+              )
+            ),
             fluidRow(
               jqui_resizable(plotOutput("serve_map")))
             ),

@@ -4,6 +4,8 @@ DataVolley is a statistics and analysis software used by most collegiate volleyb
 
 I analyzed setting, serving, receiving, digging, and attacking results and created plots that show the setting tendencies and serving trajectories of Harvard Volleyball and its opponents. As expected, Harvard and its opponents are much more likely to set their middles on a perfect or good pass than a poor pass. Second, on poor passes, Harvard sets a vast majority of the balls to the outside hitter, but if the pass if ok, the distribution is split between the outside and rightside. Lastly, serves that resulted in an ace did not tend to go towards the middle of the court, but instead deep or towards the sidelines. 
 
+My Shiny Dashboard can be found at https://maclainefields.shinyapps.io/Gov_1005_Final_Project/
+
 Further Information 
 
 There is a great app from which I got the inspiration for the layout of this project. This app can be found at https://apps.untan.gl/dvrr/.  

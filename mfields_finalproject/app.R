@@ -90,7 +90,11 @@ ui <- dashboardPage(skin = "red",
                   collapsible = TRUE,
                   tableOutput("attacksummary")), 
               box(title = "Scoring by Rotation",
-                  tableOutput("rotationpoints"), 
+                  htmlOutput("hometeam_name"),
+                  tableOutput("home_rotationpoints"),
+                  br(), 
+                  htmlOutput("visitingteam_name"), 
+                  tableOutput("visiting_rotationpoints"),
                   width = NULL), 
               box(title = "Receive", 
                   tableOutput("receivesummary"),
@@ -521,19 +525,16 @@ server <- function(input, output, session) {
    
    ## Here, I create the plot that shows scoring by rotation. Want to look at points scored in each rotation.
  
-   output$rotationpoints <- renderTable ({
+   output$home_rotationpoints <- renderTable ({
      
-     # Again, I create my custom error message. 
-     validate(
-       need(input$team != "", "Please select a team.")
-     )
+  
      
      # Again, I want to take out the system codes and only look at true player touches. I 
      ## then filter by team. 
      
      hometeamrotations <- plays(datasetInput()) %>% 
        filter(!is.na(player_number)) %>% 
-       filter(team == home_team) %>% 
+       filter(team == home_team(datasetInput())) %>% 
        
        #I'm only looking at observations that were are service receptions. 
        
@@ -558,8 +559,17 @@ server <- function(input, output, session) {
          "Sideout Percentage" = sideoutpercentage
        )
      
-     # Here, I repeat the above steps, but for the visiting team. 
      
+  
+       
+   })
+   
+   #repeating same steps as above, but for visiting team. 
+   
+   
+   output$visiting_rotationpoints <- renderTable({
+     
+
      visitingteamrotations <- plays(datasetInput()) %>% 
        filter(!is.na(player_number)) %>% 
        filter(team == visiting_team) %>% 
@@ -576,18 +586,17 @@ server <- function(input, output, session) {
          "Sideout Percentage" = sideoutpercentage
        )
      
-     #I use an ifelse statement so that the correct chart is shown depending on what team the user select. 
-     
-     if (input$team == plays(datasetInput())$home_team) {
-       hometeamrotations
-     }
-   else if(input$team == plays(datasetInput())$visiting_team){
-     visitingteamrotations
-   }
-    
-     
-  
-       
+   })
+   
+   #Creating HTML output of the home team name and visiting team name to use in the Scoring by Rotation 
+   #box in the Analytics Overview tab. 
+   
+   output$hometeam_name <- renderText ({
+     home_team(datasetInput())
+   })
+   
+   output$visitingteam_name <- renderText ({
+     visiting_team(datasetInput())
    })
    
 }

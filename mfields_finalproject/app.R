@@ -63,7 +63,8 @@ ui <- dashboardPage(skin = "red",
       selectInput("data", "Choose Opponent:",
                   choices = c("Cleveland State University", "Central Connecticut State University", "Eastern Michigan University", "Fairfield",
                               "University of Michigan", "Michigan State University", "Boston College", "Brown 1", "Brown 2", "Columbia 1", "Columbia 2", "Cornell 1", "Cornell 2", 
-                              "Dartmouth 1", "Dartmouth 2", "Northeastern University", "Penn 1", "Princeton 1", "University of Massachussets Lowell", "Yale 1", "Yale 2")
+                              "Dartmouth 1", "Dartmouth 2", "Northeastern University", "Penn 1", "Princeton 1", "University of Massachussets Lowell", "Yale 1", "Yale 2"), 
+                  selected = "Northeastern University"
                   ),
       checkboxGroupInput("team", "Choose a team:", "")
     )),
@@ -198,7 +199,8 @@ ui <- dashboardPage(skin = "red",
                                           "Overpass"="/"), 
                               selected = "#"), 
                   selectizeInput("phase", "Serve Receive/Transition",
-                                 choices = c("Transition", "Reception")))),
+                                 choices = c("Transition", "Reception"), 
+                                 selected = "Reception"))),
             
             ## Again, I wanted to describe what exactly this chart shows and provide some short insights for non-volleyball users. I do so in another box for organizational/aesthetic purposes.
             
@@ -511,7 +513,7 @@ server <- function(input, output, session) {
     # resulted in no attack or was an error, I just show am blank court. 
     
     if (!input$pass_result %in% c("/", "=")) {
-      ggplot(attack_rate2, aes(x,y, fill = (100* attack_rate2$rate))) + geom_tile(aes(width = 1)) + ggcourt(court = "lower", labels = c(input$team)) + geom_text(aes(label = percent(attack_rate2$rate))) +
+      ggplot(attack_rate2, aes(x,y, fill = (100* attack_rate2$rate))) + geom_tile(aes(width = 1)) + ggcourt(court = "lower", labels = c(input$team)) + geom_text(aes(label = percent(attack_rate2$rate)), color = "white") +
      scale_fill_continuous(name = "Percentage of Sets")
     }
     

@@ -6,7 +6,7 @@ I analyzed setting, serving, receiving, digging, and attacking results and creat
 
 My Shiny Dashboard can be found at https://maclainefields.shinyapps.io/Gov_1005_Final_Project/
 
-Further Information 
+**Further Information**
 
 There is a great app from which I got the inspiration for the layout of this project. This app can be found at https://apps.untan.gl/dvrr/.  
 

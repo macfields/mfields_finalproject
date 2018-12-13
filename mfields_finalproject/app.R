@@ -242,7 +242,7 @@ ui <- dashboardPage(skin = "red",
                   width = 12, 
                   solidHeader = TRUE,
                   p("This chart shows the percentage of sets going to a specific zone for each team. This is a model of setting decisions, and can be filtered by the 
-                    quality of the pass. For instance, if #(Perfect Pass) is chosen, the chart shows where the setter is likely to set off a perfect pass. The chart shows that most teams are
+                    quality of the pass. For instance, if Perfect Pass is chosen, the chart shows where the setter is likely to set off a perfect pass. The chart shows that most teams are
 going to set their middles and right sides on a perfect pass. This is because these are more challenging sets."))
             ),
             fluidRow(

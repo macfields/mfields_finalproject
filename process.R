@@ -34,12 +34,7 @@ library(scales)
 library(fs)
 library(lubridate)
 
-#unzipping file and putting datavolley files in folder. 
-unzip("redatavolleyfiles.zip", exdir = "2018dvwfiles/")
-file_delete("redatavolleyfiles.zip")
-
-
-#I know there must be an easier name to read in these datavolley files. 
+#I know there must be an easier name to read in these datavolley files (use a function).
 #However, given that there are only 21, I can do it by hand individually. Since the Harvard Women's 
 #Volleyball team plays all Ivy League opponents twice, I designate Ivy League matches with a 1 or 2, 
 #where matches ending in 1 are first round matches, and those ending in 2 are second round. I don't 

@@ -9,7 +9,6 @@
      #3a. shiny_data - folder that contains the rds files used in the shiny app. 
      #3b www - folder that contains that harvard athletics logo image. 
 #4. process.R - R script in which I prepared the raw data for use in the shiny app. 
-#5. redatavolleyfiles.zip - zip file of the orginal data. 
 
 #Libraries needed: 
 #devtools

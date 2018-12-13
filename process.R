@@ -67,14 +67,18 @@ BROWN2 <- read_dv("2018dvwfiles/&2018-11-03 66884 HARV-BROWN(VM).dvw", insert_te
 
 
 
-# I know I should complete a lot of my analysis in my process.R file, but I want to use the datavolley objects in a pretty raw form in the shiny app 
-# because the raw form contains important metadata. So, I write RDS files to my shiny app directory and 
-# do most of my data analysis there. I create a function to do so because there are a lot of files. 
+# I know I should complete a lot of my analysis in my process.R file, but I want
+# to use the datavolley objects in a pretty raw form in the shiny app because
+# the raw form contains important metadata. So, I write RDS files to my shiny
+# app directory and do most of my data analysis there. I create a function to do
+# so because there are a lot of files.
 
-#This function takes the datavolley objecft as an argument, and write an RDS file in my shiny app directory. 
+#This function takes the datavolley objecft as an argument, and write an RDS
+#file in my shiny app directory.
 
-# The combination deparse(substitute(x)) pulls out an objects name. I got this code from 
-# https://stackoverflow.com/questions/37646382/how-do-deparse-substitute-work-to-allow-access-to-an-objects-name. 
+# The combination deparse(substitute(x)) pulls out an objects name. I got this
+# code from
+# https://stackoverflow.com/questions/37646382/how-do-deparse-substitute-work-to-allow-access-to-an-objects-name.
 
 write_dv_rds <- function(dv_object) {
   x <- paste("mfields_finalproject/shiny_data/", deparse(substitute(dv_object)),".rds")
@@ -104,7 +108,10 @@ write_dv_rds(YALE2)
 write_dv_rds(BROWN2)
 
 
-## The following code is not used in my analysis or shiny app. I just wanted to get a sense of what the datavolley objects, their summary, and their plays dataset look like. 
+## The following code is not used in my analysis or shiny app. I just wanted to
+## get a sense of what the datavolley objects, their summary, and their plays
+## dataset look like. I chose an arbitrary match. 
+
 brown_plays <- plays(BROWN1) %>% filter(!is.na(player_name))
 
 glimpse(brown_plays)
@@ -116,8 +123,4 @@ brown_serves <- brown_plays %>%
   filter(skill == "Serve") %>% 
   select(point_id, code, team, player_number, skill_type, evaluation_code, evaluation, start_zone, end_zone, special_code, home_team_score, visiting_team_score, home_setter_position, visiting_setter_position, point_won_by, serving_team) 
 
-#  A little bit about the layout of this project: 
-#The zip file with all the datavolleyfiles is in the main project directory, mfields_finalproject. 
-# The datavolley files individually are in thie 2018dvwfiles folder. The shiny app is in the mfields_finalproject folder within mfields_finalproject. 
-# Within the shiny app, the .rds files that are used in the app are all in the shiny_data folder. 
-# the www folder contains the Harvard Athletics Image. 
+

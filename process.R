@@ -36,6 +36,8 @@ library(lubridate)
 
 #unzipping file and putting datavolley files in folder. 
 unzip("redatavolleyfiles.zip", exdir = "2018dvwfiles/")
+file_delete("redatavolleyfiles.zip")
+
 
 #I know there must be an easier name to read in these datavolley files. 
 #However, given that there are only 21, I can do it by hand individually. Since the Harvard Women's 

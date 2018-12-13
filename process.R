@@ -1,3 +1,31 @@
+# This R script file also details the organization of the repository and the
+# libraries that are needed to run the Shiny App.
+
+#Repo Contents
+#1. README.md - README file for this project. 
+#2. 2018dvwfiles - folder that contains the 21 datavolley dvw files. 
+#3. mfields_finalproject - Shiny application folder. Contains the app script, and two more folders. 
+     #3a. shiny_data - folder that contains the rds files used in the shiny app. 
+     #3b www - folder that contains that harvard athletics logo image. 
+#4. process.R - R script in which I prepared the raw data for use in the shiny app. 
+#5. redatavolleyfiles.zip - zip file of the orginal data. 
+
+#Libraries needed: 
+#devtools
+#datavolley
+#tidyverse
+#scales
+#fs
+#lubridate
+#shiny 
+#shinythemes
+#tools
+#DT
+#shinydashboard
+#shinyjqui
+
+
+
 library(devtools)
 library(datavolley)
 library(tidyverse)

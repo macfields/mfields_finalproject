@@ -69,7 +69,7 @@ BROWN2 <- read_dv("2018dvwfiles/&2018-11-03 66884 HARV-BROWN(VM).dvw", insert_te
 # app directory and do most of my data analysis there. I create a function to do
 # so because there are a lot of files.
 
-#This function takes the datavolley objecft as an argument, and write an RDS
+#This function takes the datavolley object as an argument, and writes an RDS
 #file in my shiny app directory.
 
 # The combination deparse(substitute(x)) pulls out an objects name. I got this
@@ -105,7 +105,7 @@ write_dv_rds(BROWN2)
 
 
 ## The following code is not used in my analysis or shiny app. I just wanted to
-## get a sense of what the datavolley objects, their summary, and their plays
+## get a sense of what the datavolley objects, their summary, and their "plays"
 ## dataset look like. I chose an arbitrary match. 
 
 brown_plays <- plays(BROWN1) %>% filter(!is.na(player_name))

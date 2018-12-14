@@ -2,7 +2,7 @@
 
 **Summary**
 
-DataVolley is a statistics and analysis software used by most collegiate volleyball teams. Coaches can download DataVolley files from each match in the .dvw format. These files contain metadata about the match as well as data on each touch during the game. There is a package, "datavolley", that allows for the analysis of these files in R. It was created by Ben Raymond, and the github for this package can be found [here](https://github.com/raymondben/datavolley). I analyzed twenty-one DataVolley files from the Harvard Women's Volleyball 2018 Season. The data was given to me by Jared Goldberg, Assistant Coach of the Harvard Women's Volleyball team. 
+DataVolley is a statistical software used by most collegiate volleyball teams. Coaches can download DataVolley files from each match in the .dvw format. These files contain metadata about the match as well as data on each touch during the game. There is a package, "datavolley", that allows for the analysis of these files in R. It was created by Ben Raymond, and the github for this package can be found [here](https://github.com/raymondben/datavolley). I analyzed twenty-one DataVolley files from the Harvard Women's Volleyball 2018 Season. The data was given to me by Jared Goldberg, Assistant Coach of the Harvard Women's Volleyball team. 
 
 I analyzed setting, serving, receiving, digging, and attacking results and created plots that show the setting tendencies and serving trajectories of Harvard Volleyball and its opponents. As expected, Harvard and its opponents are much more likely to set their middles on a perfect or good pass than a poor pass. Second, on poor passes, Harvard sets a vast majority of the balls to the outside hitter, but if the pass if ok, the distribution is split between the outside and rightside. Lastly, serves that resulted in an ace did not tend to go towards the middle of the court, but instead deep or towards the sidelines. 
 
@@ -10,7 +10,7 @@ My Shiny Dashboard can be found [here](https://maclainefields.shinyapps.io/Gov_1
 
 **Motivation**
 
-I wanted to create a tool that allowed for my teammates and I to explore our opponents' tendencies in a quick, efficient manner. It is also helpful to be able to look at our own tendencies, especially in terms of setting. Sometimes it can be hard to find time to watch enough game film, and this tool allows players to look at the nuts and bolts of a scouting report.  
+I wanted to create a tool that allowed for my teammates and I to explore our opponents' tendencies in a quick, efficient manner. It is also helpful to be able to look at our own tendencies, especially in terms of setting. Sometimes it can be hard to find time to watch enough game film, and this tool allows players to look at key information about their opponents.
 
 **Further Information**
 

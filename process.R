@@ -1,4 +1,4 @@
-# This R script file also details the organization of the repository and the
+# This R script file details the organization of the repository and the
 # libraries that are needed to run the Shiny App. I also prepare the raw data
 # for use in the shiny app within this R script.
 
